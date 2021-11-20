@@ -43,4 +43,8 @@ public class RetrofitClient {
                 .build();
         return retrofit;
     }
+
+    public ApiRequest createRequest(){
+        return retrofit.create(ApiRequest.class);
+    }
 }
