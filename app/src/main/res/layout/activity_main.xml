@@ -7,6 +7,9 @@
     tools:context=".MainActivity">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMain"
+        app:title="Weather Temp"
+        app:menu="@menu/menu_main"
         android:background="@color/teal_200"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"/>

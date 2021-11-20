@@ -37,7 +37,7 @@ public class RetrofitClient {
         Gson gson = new GsonBuilder().setLenient().create();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://khoapham.vn/")
+                .baseUrl("https://www.metaweather.com/")
                 .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
