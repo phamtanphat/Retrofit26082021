@@ -1,10 +1,16 @@
 package com.example.retrofit26082021;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class City {
     private String title;
-    private String location_type;
+    @SerializedName("location_type")
+    private String locationType;
     private int woeid;
-    private String latt_long;
+    @SerializedName("latt_long")
+    private String latLong;
+
 
     public String getTitle() {
         return title;
@@ -14,12 +20,12 @@ public class City {
         this.title = title;
     }
 
-    public String getLocation_type() {
-        return location_type;
+    public String getLocationType() {
+        return locationType;
     }
 
-    public void setLocation_type(String location_type) {
-        this.location_type = location_type;
+    public void setLocationType(String locationType) {
+        this.locationType = locationType;
     }
 
     public int getWoeid() {
@@ -30,11 +36,11 @@ public class City {
         this.woeid = woeid;
     }
 
-    public String getLatt_long() {
-        return latt_long;
+    public String getLatLong() {
+        return latLong;
     }
 
-    public void setLatt_long(String latt_long) {
-        this.latt_long = latt_long;
+    public void setLatLong(String latLong) {
+        this.latLong = latLong;
     }
 }
