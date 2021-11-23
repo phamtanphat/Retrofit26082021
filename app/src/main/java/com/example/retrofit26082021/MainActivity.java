@@ -1,8 +1,10 @@
 package com.example.retrofit26082021;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -10,6 +12,12 @@ import android.view.MenuItem;
 
 import com.example.retrofit26082021.databinding.ActivityMainBinding;
 
+import java.util.List;
+import java.util.function.Consumer;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mBinding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
+
+        setSupportActionBar(mBinding.toolbarMain);
         // Demo1
 //        ApiRequest apiRequest = RetrofitClient.getInstance().createRequest();
 //
@@ -57,16 +67,36 @@ public class MainActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                // Toast like print
+                ApiRequest apiRequest = RetrofitClient.getInstance().createRequest();
+
+                Call<List<City>> callback = apiRequest.searchCity(query);
+                callback.enqueue(new Callback<List<City>>() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onResponse(Call<List<City>> call, Response<List<City>> response) {
+                        List<City> list = response.body();
+
+                        list.forEach(new Consumer<City>() {
+                            @Override
+                            public void accept(City city) {
+                                Log.d("BBB",city.toString());
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<City>> call, Throwable t) {
+
+                    }
+                });
                 return false;
             }
 
             @Override
-            public boolean onQueryTextChange(String s) {
-                // UserFeedback.show( "SearchOnQueryTextChanged: " + s);
+            public boolean onQueryTextChange(String newText) {
                 return false;
             }
         });
-        return super.onCreateOptionsMenu(menu);
+        return true;
     }
 }

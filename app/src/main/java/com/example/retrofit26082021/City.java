@@ -43,4 +43,14 @@ public class City {
     public void setLatLong(String latLong) {
         this.latLong = latLong;
     }
+
+    @Override
+    public String toString() {
+        return "City{" +
+                "title='" + title + '\'' +
+                ", locationType='" + locationType + '\'' +
+                ", woeid=" + woeid +
+                ", latLong='" + latLong + '\'' +
+                '}';
+    }
 }
